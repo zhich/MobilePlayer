@@ -53,12 +53,12 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     private static final int HIDE_MEDIA_CONTROLLER = 2;//隐藏控制面板
     private static final int SHOW_SPEED = 3;//显示网络速度
 
-    private static final int FULL_SCREEN = 1;//全屏
-    private static final int DEFAULT_SCREEN = 2;//默认屏幕
+    private static final int FULL_SCREEN = 11;//全屏
+    private static final int DEFAULT_SCREEN = 12;//默认屏幕
 
     private static final long SHOW_MEDIA_CONTROLLER_TIME = 4000;//显示控制面板的时间
     private static final long UPDATE_NET_SPEED_INTERVAL = 2000;//更新网速时间间隔
-    private long UPDATE_PROGRESS_INTERVAL = 1000;//更新视频进度的时间间隔
+    private static final long UPDATE_PROGRESS_INTERVAL = 1000;//更新视频进度的时间间隔
 
     @BindView(R.id.systemVideo_vv_videoView)
     VideoView mVideoView;
@@ -95,7 +95,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     @BindView(R.id.buffer_tv_netSpeed)
     TextView mBufferNetSpeedTv;
 
-    private MyReceiver myReceiver;
+    private MyReceiver myReceiver;//监听电量变化，只能以动态注册方式注册广播
     private boolean mIsUseSystemJudgeLag = true;//是否使用系统的方式来监听视频卡顿
     private boolean mIsShowMediaController;//是否显示控制面板
     private boolean mIsFullScreen;//是否全屏
@@ -103,10 +103,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     private ArrayList<MediaItem> mMediaItemList;//传入进来的视频列表
     private int mPosition;//要播放的列表中的具体位置
     private boolean mIsNetUri;//是否网络Uri
-
-
     private int mPrePlayPosition;//上一次的播放进度
-
     private GestureDetector mGestureDetector;//手势识别器
     private AudioManager mAudioManager;//声音管理器
     private int mCurrentVoice;//当前的音量
@@ -595,7 +592,6 @@ public class SystemVideoPlayerActivity extends BaseActivity {
             intent.setData(mUri);
         }
         startActivity(intent);
-
         finish();
     }
 
