@@ -145,10 +145,10 @@
                 android:background="@drawable/selector_next_video_btn" />
 
             <Button
-                android:id="@+id/mediaController_btn_siwchScreenVideo"
+                android:id="@+id/mediaController_btn_switchScreenVideo"
                 style="@style/layout_wrap"
                 android:layout_weight="1"
-                android:background="@drawable/selector_siwtch_screen_full_btn" />
+                android:background="@drawable/selector_switch_screen_full_btn" />
 
         </LinearLayout>
 

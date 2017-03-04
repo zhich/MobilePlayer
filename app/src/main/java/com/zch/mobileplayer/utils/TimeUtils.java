@@ -1,5 +1,7 @@
 package com.zch.mobileplayer.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -34,6 +36,15 @@ public class TimeUtils {
         } else {
             return formatter.format("%02d:%02d", minutes, seconds).toString();
         }
+    }
 
+    /**
+     * 得到系统时间
+     *
+     * @return
+     */
+    public static String getSystemTime() {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        return format.format(new Date());
     }
 }

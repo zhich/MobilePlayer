@@ -45,7 +45,7 @@ public class LocalVideoPager extends BasePager {
     @BindView(R.id.local_lv_data)
     ListView mDataLv;
     @BindView(R.id.local_pb_loading)
-    ProgressBar mLodingPb;
+    ProgressBar mLoadingPb;
     @BindView(R.id.local_tv_noData)
     TextView mNoDataTv;
 
@@ -149,7 +149,7 @@ public class LocalVideoPager extends BasePager {
             mNoDataTv.setVisibility(View.VISIBLE);
         }
 
-        mLodingPb.setVisibility(View.GONE);
+        mLoadingPb.setVisibility(View.GONE);
 
         //取消观察
         if (null != mSubscribe) {

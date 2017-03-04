@@ -9,7 +9,14 @@
     <string name="net_video">网络视频</string>
     <string name="net_audio">网络音频</string>
 
-
     <string name="tip_starting">正在启动...</string>
     <string name="tip_not_found_video">没有发现视频...</string>
+    <string name="tip_get_no_data">没有获取到数据</string>
+    <string name="tip_loading">玩命加载中...</string>
+    <string name="tip_cacheing">缓存中...</string>
+
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="system_player_dialog_title_tip">系统播放器提醒您</string>
+    <string name="system_player_dialog_msg_tip">当您播放视频，有声音没有画面的时候，请切换万能播放器播放</string>
 </resources>
