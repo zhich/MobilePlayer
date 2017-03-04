@@ -35,6 +35,7 @@ public class SplashActivity extends BaseActivity {
                 startMainActivity();
             }
         }, 2000);
+
     }
 
     @Override
@@ -42,6 +43,13 @@ public class SplashActivity extends BaseActivity {
         //把所有的消息和回调移除
         handler.removeCallbacksAndMessages(null);
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //把所有的消息和回调移除（onDestroy执行不确定，因此这里需执行一遍）
+        handler.removeCallbacksAndMessages(null);
+        super.onBackPressed();
     }
 
     @Override

@@ -23,13 +23,18 @@ import com.zch.mobileplayer.adapter.LocalMediaAdapter;
 import com.zch.mobileplayer.constant.IntentConstant;
 import com.zch.mobileplayer.entity.MediaItem;
 import com.zch.mobileplayer.utils.ListUtils;
-import com.zch.mobileplayer.utils.async.Async;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import rx.Observable;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * 本地视频页面
@@ -46,6 +51,8 @@ public class LocalVideoPager extends BasePager {
 
     private ArrayList<MediaItem> mMediaItemList;
     private LocalMediaAdapter mLocalMediaAdapter;
+
+    private Subscription mSubscribe;
 
     public LocalVideoPager(Context context) {
         super(context);
@@ -81,49 +88,51 @@ public class LocalVideoPager extends BasePager {
      * 从本地获取视频
      */
     private void getVideoFromLocal() {
-        Async.run(new Runnable() {
-            @Override
-            public void run() {
-                mMediaItemList = new ArrayList<MediaItem>();
-                ContentResolver resolver = mContext.getContentResolver();
-                Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                String[] objs = {
-                        MediaStore.Video.Media.DISPLAY_NAME,
-                        MediaStore.Video.Media.DURATION,
-                        MediaStore.Video.Media.SIZE,
-                        MediaStore.Video.Media.DATA,
-                        MediaStore.Video.Media.ARTIST,
-                };
-                Cursor cursor = resolver.query(uri, objs, null, null, null);
-                if (cursor != null) {
-                    MediaItem mediaItem = null;
-                    while (cursor.moveToNext()) {
-                        mediaItem = new MediaItem();
-
-                        mediaItem.name = cursor.getString(0);
-                        mediaItem.duration = cursor.getLong(1);
-                        mediaItem.size = cursor.getLong(2);
-                        mediaItem.data = cursor.getString(3);
-                        mediaItem.artist = cursor.getString(4);
-
-                        mMediaItemList.add(mediaItem);
-                    }
-                    try {
-                        cursor.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                Async.runOnUiThread(new Runnable() {
+        mSubscribe = Observable.just("")
+                .subscribeOn(Schedulers.io())
+                .map(new Func1<String, Object>() {
                     @Override
-                    public void run() {
+                    public Object call(String s) {
+                        mMediaItemList = new ArrayList<MediaItem>();
+                        ContentResolver resolver = mContext.getContentResolver();
+                        Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                        String[] objs = {
+                                MediaStore.Video.Media.DISPLAY_NAME,
+                                MediaStore.Video.Media.DURATION,
+                                MediaStore.Video.Media.SIZE,
+                                MediaStore.Video.Media.DATA,
+                                MediaStore.Video.Media.ARTIST,
+                        };
+                        Cursor cursor = resolver.query(uri, objs, null, null, null);
+                        if (cursor != null) {
+                            MediaItem mediaItem = null;
+                            while (cursor.moveToNext()) {
+                                mediaItem = new MediaItem();
+
+                                mediaItem.name = cursor.getString(0);
+                                mediaItem.duration = cursor.getLong(1);
+                                mediaItem.size = cursor.getLong(2);
+                                mediaItem.data = cursor.getString(3);
+                                mediaItem.artist = cursor.getString(4);
+
+                                mMediaItemList.add(mediaItem);
+                            }
+                            try {
+                                cursor.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        return null;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Object>() {
+                    @Override
+                    public void call(Object o) {
                         showVideo();
                     }
                 });
-            }
-
-        });
     }
 
     /**
@@ -141,6 +150,12 @@ public class LocalVideoPager extends BasePager {
         }
 
         mLodingPb.setVisibility(View.GONE);
+
+        //取消观察
+        if (null != mSubscribe) {
+            mSubscribe.unsubscribe();
+            mSubscribe = null;
+        }
     }
 
     /**
