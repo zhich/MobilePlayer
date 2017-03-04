@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_100"
+    android:padding="@dimen/dp_3">
+
+    <ImageView
+        android:id="@+id/localMedia_iv_icon"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:src="@drawable/video_default" />
+
+    <LinearLayout
+        style="@style/layout_wrap"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_3"
+        android:layout_toRightOf="@id/localMedia_iv_icon"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/localMedia_tv_name"
+            style="@style/layout_wrap"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_18"
+            tool:text="视频的名称" />
+
+        <TextView
+            android:id="@+id/localMedia_tv_time"
+            style="@style/layout_wrap"
+            android:layout_marginTop="@dimen/dp_5"
+            android:textColor="@color/color_55000000"
+            android:textSize="@dimen/sp_16"
+            tool:text="20:00" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/localMedia_tv_size"
+        style="@style/layout_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dp_3"
+        android:layout_marginRight="@dimen/dp_8"
+        android:textColor="@color/color_55000000"
+        android:textSize="@dimen/sp_16"
+        tool:text="20MB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:layout_marginRight="@dimen/dp_8"
+        android:background="@color/color_44000000" />
+
+</RelativeLayout>
