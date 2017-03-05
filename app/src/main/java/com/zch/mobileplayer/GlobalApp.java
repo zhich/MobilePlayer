@@ -2,6 +2,8 @@ package com.zch.mobileplayer;
 
 import android.app.Application;
 
+import org.xutils.x;
+
 public class GlobalApp extends Application {
 
     private static GlobalApp instance;
@@ -14,8 +16,7 @@ public class GlobalApp extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
-
+        x.Ext.init(this);
     }
 
 }
