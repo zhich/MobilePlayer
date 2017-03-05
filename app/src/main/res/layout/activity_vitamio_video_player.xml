@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_full"
+    android:background="@color/color_000000"
+    android:gravity="center">
+
+    <com.zch.mobileplayer.view.VitamioVideoView
+        android:id="@+id/vitamioVideo_vv_videoView"
+        style="@style/layout_full"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/vitamioVideo_view_mediaController"
+        layout="@layout/view_media_controller" />
+
+    <include
+        android:id="@+id/vitamioVideo_view_buffer"
+        layout="@layout/view_buffer" />
+
+    <include
+        android:id="@+id/vitamioVideo_view_loading"
+        layout="@layout/view_loading" />
+
+</RelativeLayout>

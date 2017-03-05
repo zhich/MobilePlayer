@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 /**
- * 自定义VideoView
+ * 系统的VideoView
  * Created by zch on 2017/3/4.
  */
 

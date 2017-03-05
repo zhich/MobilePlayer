@@ -183,7 +183,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
                     int voice = (int) Math.min(Math.max(mVol + delta, 0), mMaxVoice);
                     if (delta != 0) {
                         mIsMute = false;
-                        updataVoice(voice, mIsMute);
+                        updateVoice(voice, mIsMute);
                     }
                 }
                 break;
@@ -207,13 +207,13 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             mCurrentVoice--;
-            updataVoice(mCurrentVoice, false);
+            updateVoice(mCurrentVoice, false);
             myHandler.removeMessages(HIDE_MEDIA_CONTROLLER);
             myHandler.sendEmptyMessageDelayed(HIDE_MEDIA_CONTROLLER, SHOW_MEDIA_CONTROLLER_TIME);
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             mCurrentVoice++;
-            updataVoice(mCurrentVoice, false);
+            updateVoice(mCurrentVoice, false);
             myHandler.removeMessages(HIDE_MEDIA_CONTROLLER);
             myHandler.sendEmptyMessageDelayed(HIDE_MEDIA_CONTROLLER, SHOW_MEDIA_CONTROLLER_TIME);
             return true;
@@ -229,7 +229,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.mediaController_btn_voice:
                 mIsMute = !mIsMute;
-                updataVoice(mCurrentVoice, mIsMute);
+                updateVoice(mCurrentVoice, mIsMute);
                 break;
             case R.id.mediaController_btn_switchPlayer:
                 showSwitchPlayerDialog();
@@ -523,7 +523,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
                 } else {
                     mIsMute = true;
                 }
-                updataVoice(progress, mIsMute);
+                updateVoice(progress, mIsMute);
             }
         }
 
@@ -621,7 +621,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
      * @param progress
      * @param isMute
      */
-    private void updataVoice(int progress, boolean isMute) {
+    private void updateVoice(int progress, boolean isMute) {
         if (isMute) {
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
             mVoiceSeekbar.setProgress(0);

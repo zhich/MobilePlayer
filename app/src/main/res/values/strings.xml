@@ -19,4 +19,10 @@
     <string name="confirm">确定</string>
     <string name="system_player_dialog_title_tip">系统播放器提醒您</string>
     <string name="system_player_dialog_msg_tip">当您播放视频，有声音没有画面的时候，请切换万能播放器播放</string>
+    <string name="vitamio_player_dialog_title_tip">万能播放器提醒您</string>
+    <string name="vitamio_player_dialog_msg_tip">当您播放视频，有花屏的时候，可以尝试使用系统播放器播放</string>
+
+    <string name="tip">提示</string>
+    <string name="sorry_cannot_play_the_video">抱歉，无法播放该视频！</string>
+
 </resources>
