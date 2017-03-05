@@ -585,7 +585,7 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
         builder.setPositiveButton(mContext.getString(R.string.confirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startVitamioPlayer();
+                startSystemPlayer();
             }
         });
         builder.setNegativeButton(mContext.getString(R.string.cancel), null);
@@ -593,14 +593,14 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
     }
 
     /**
-     * 启动Vitamio万能播放器
+     * 启动系统播放器
      */
-    private void startVitamioPlayer() {
+    private void startSystemPlayer() {
         if (null != mVideoView) {
             mVideoView.stopPlayback();
         }
 
-        Intent intent = new Intent(this, VitamioVideoPlayerActivity.class);
+        Intent intent = new Intent(mContext, SystemVideoPlayerActivity.class);
         if (!ListUtils.isEmpty(mMediaItemList)) {
             Bundle bundle = new Bundle();
             bundle.putSerializable(IntentConstant.VIDEO_LIST, mMediaItemList);
