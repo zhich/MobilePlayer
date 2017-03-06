@@ -3,7 +3,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_100"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:padding="@dimen/dp_6">
 
 
     <RelativeLayout

@@ -52,6 +52,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     private static final int PROGRESS = 1;//视频进度更新
     private static final int HIDE_MEDIA_CONTROLLER = 2;//隐藏控制面板
     private static final int SHOW_SPEED = 3;//显示网络速度
+    private static final int GET_NO_VIDEO = 4;//没有获取到视频
 
     private static final int FULL_SCREEN = 11;//全屏
     private static final int DEFAULT_SCREEN = 12;//默认屏幕
@@ -59,6 +60,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     private static final long SHOW_MEDIA_CONTROLLER_TIME = 4000;//显示控制面板的时间
     private static final long UPDATE_NET_SPEED_INTERVAL = 2000;//更新网速时间间隔
     private static final long UPDATE_PROGRESS_INTERVAL = 1000;//更新视频进度的时间间隔
+    private static final long DELAYED_EXIST = 2000;//没有视频进来时延迟多少秒退出应用
 
     @BindView(R.id.systemVideo_vv_videoView)
     VideoView mVideoView;
@@ -257,20 +259,6 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     }
 
     private void init() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        mScreenWidth = displayMetrics.widthPixels;
-        mScreenHeight = displayMetrics.heightPixels;
-
-        myReceiver = new MyReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        //当电量变化的时候发这个广播
-        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
-        registerReceiver(myReceiver, intentFilter);
-
-        //实例化手势识别器，并且重写双击，点击，长按
-        mGestureDetector = new GestureDetector(mContext, new MySimpleOnGestureListener());
-
         Intent intent = getIntent();
         mUri = intent.getData();
         mMediaItemList = (ArrayList<MediaItem>) intent.getSerializableExtra(IntentConstant.VIDEO_LIST);
@@ -286,8 +274,24 @@ public class SystemVideoPlayerActivity extends BaseActivity {
             mIsNetUri = CommonUtils.isNetUri(mUri.toString());
             mVideoView.setVideoURI(mUri);
         } else {
-            ToastUtils.showToastLong(mContext, mContext.getString(R.string.tip_get_no_data));
+            ToastUtils.showToastShort(mContext, mContext.getString(R.string.tip_get_no_data));
+            myHandler.sendEmptyMessageDelayed(GET_NO_VIDEO, DELAYED_EXIST);
         }
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        mScreenWidth = displayMetrics.widthPixels;
+        mScreenHeight = displayMetrics.heightPixels;
+
+        myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        //当电量变化的时候发这个广播
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(myReceiver, intentFilter);
+
+        //实例化手势识别器，并且重写双击，点击，长按
+        mGestureDetector = new GestureDetector(mContext, new MySimpleOnGestureListener());
+
         setButtonState();
 
         mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -372,6 +376,9 @@ public class SystemVideoPlayerActivity extends BaseActivity {
                     //每两秒更新一次
                     myHandler.removeMessages(SHOW_SPEED);
                     myHandler.sendEmptyMessageDelayed(SHOW_SPEED, UPDATE_NET_SPEED_INTERVAL);
+                    break;
+                case GET_NO_VIDEO:
+                    finish();
                     break;
                 default:
                     break;
@@ -705,7 +712,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
                 setBtnEnable(false);
             } else if (mMediaItemList.size() == 2) {
                 if (mPosition == 0) {
-                    mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+                    mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
                     mPreVideoBtn.setEnabled(false);
                     mNextVideoBtn.setBackgroundResource(R.drawable.selector_next_video_btn);
                     mNextVideoBtn.setEnabled(true);
@@ -717,7 +724,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
                 }
             } else {
                 if (mPosition == 0) {
-                    mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+                    mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
                     mPreVideoBtn.setEnabled(false);
                 } else if (mPosition == mMediaItemList.size() - 1) {
                     mNextVideoBtn.setBackgroundResource(R.drawable.next_btn_gray);
@@ -741,7 +748,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
             mPreVideoBtn.setBackgroundResource(R.drawable.selector_pre_video_btn);
             mNextVideoBtn.setBackgroundResource(R.drawable.selector_next_video_btn);
         } else {
-            mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+            mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
             mNextVideoBtn.setBackgroundResource(R.drawable.next_btn_gray);
         }
         mPreVideoBtn.setEnabled(isEnable);

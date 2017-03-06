@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    style="@style/layout_full"
+    android:background="@drawable/audio_base_bg">
+
+    <RelativeLayout
+        android:id="@+id/audioPlayer_rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<ImageView
+            android:id="@+id/iv_icon"
+            style="@style/layout_wrap"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/now_playing_matrix_01"
+            android:visibility="gone" />-->
+
+        <com.zch.mobileplayer.view.BaseVisualizerView
+            android:id="@+id/audioPlayer_view_baseVisualizerView"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_100"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/audioPlayer_tv_artist"
+            style="@style/layout_wrap"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_40"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/audioPlayer_tv_worksName"
+            style="@style/layout_wrap"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_60"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/sp_18" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/audioPlayer_ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/audioPlayer_tv_time"
+            style="@style/layout_wrap"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_8"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/sp_14"
+            tool:text="00:00/30:00" />
+
+        <SeekBar
+            android:id="@+id/audioPlayer_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:layout_weight="1"
+            android:maxHeight="@dimen/dp_5"
+            android:minHeight="@dimen/dp_5"
+            android:progressDrawable="@drawable/audio_progress_horizontal"
+            android:thumb="@drawable/seek_thumb" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/audioPlayer_btn_playmode"
+                style="@style/layout_wrap"
+                android:layout_weight="1"
+                android:background="@drawable/selector_audio_playmode_order_btn" />
+
+            <Button
+                android:id="@+id/audioPlayer_btn_pre"
+                style="@style/layout_wrap"
+                android:layout_weight="1"
+                android:background="@drawable/selector_pre_audio_btn" />
+
+
+            <Button
+                android:id="@+id/audioPlayer_btn_startOrPause"
+                style="@style/layout_wrap"
+                android:layout_weight="1"
+                android:background="@drawable/selector_pause_audio_btn" />
+
+            <Button
+                android:id="@+id/audioPlayer_btn_next"
+                style="@style/layout_wrap"
+                android:layout_weight="1"
+                android:background="@drawable/selector_next_audio_btn" />
+
+            <Button
+                android:id="@+id/audioPlayer_btn_lyrc"
+                style="@style/layout_wrap"
+                android:layout_weight="1"
+                android:background="@drawable/selector_lyrc_btn" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.zch.mobileplayer.view.LyricView
+        android:id="@+id/audioPlayer_view_lyricView"
+        style="@style/layout_full"
+        android:layout_above="@id/audioPlayer_ll_bottom"
+        android:layout_below="@id/audioPlayer_rl_top" />
+
+</RelativeLayout>

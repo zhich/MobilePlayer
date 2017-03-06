@@ -11,9 +11,11 @@
 
     <string name="tip_starting">正在启动...</string>
     <string name="tip_not_found_video">没有发现视频...</string>
+    <string name="tip_not_found_audio">没有发现音频...</string>
     <string name="tip_get_no_data">没有获取到数据</string>
     <string name="tip_loading">玩命加载中...</string>
     <string name="tip_cacheing">缓存中...</string>
+    <string name="tip_request_error">请求出错了...</string>
 
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>

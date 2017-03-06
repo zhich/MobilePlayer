@@ -1,14 +1,19 @@
 package com.zch.mobileplayer.pager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zch.mobileplayer.R;
+import com.zch.mobileplayer.activity.SystemVideoPlayerActivity;
 import com.zch.mobileplayer.adapter.NetVideoAdapter;
 import com.zch.mobileplayer.common.Api;
+import com.zch.mobileplayer.constant.IntentConstant;
 import com.zch.mobileplayer.entity.MediaItem;
 import com.zch.mobileplayer.utils.ListUtils;
 import com.zch.mobileplayer.utils.http.xutils3.MyCallBack;
@@ -22,6 +27,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * 网络视频页面
@@ -58,6 +64,16 @@ public class NetVideoPager extends BasePager {
         fetchVideoFromNet();
     }
 
+    @OnItemClick(R.id.net_lv_data)
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(mContext, SystemVideoPlayerActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(IntentConstant.VIDEO_LIST, mMediaItemList);
+        intent.putExtras(bundle);
+        intent.putExtra(IntentConstant.POSITION, position);
+        mContext.startActivity(intent);
+    }
+
     /**
      * 从网络抓取数据
      */
@@ -66,6 +82,19 @@ public class NetVideoPager extends BasePager {
             @Override
             public void onSuccess(String result) {
                 dealWithVideoDatas(result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                mNoDataTv.setText(mContext.getString(R.string.tip_request_error));
+                mNoDataTv.setVisibility(View.VISIBLE);
+                mLodingPb.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFinished() {
+                super.onFinished();
             }
         });
     }

@@ -6,7 +6,8 @@
     <ListView
         android:id="@+id/local_lv_data"
         style="@style/layout_full"
-        android:divider="@null" />
+        android:divider="@color/color_44000000"
+        android:dividerHeight="@dimen/dp_1" />
 
     <TextView
         android:id="@+id/local_tv_noData"

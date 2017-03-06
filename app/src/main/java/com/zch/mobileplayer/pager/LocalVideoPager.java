@@ -66,6 +66,13 @@ public class LocalVideoPager extends BasePager {
         return view;
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+
+        getVideoFromLocal();
+    }
+
     @OnItemClick(R.id.local_lv_data)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(mContext, SystemVideoPlayerActivity.class);
@@ -74,14 +81,6 @@ public class LocalVideoPager extends BasePager {
         intent.putExtras(bundle);
         intent.putExtra(IntentConstant.POSITION, position);
         mContext.startActivity(intent);
-    }
-
-    @Override
-    public void initData() {
-        super.initData();
-
-        getVideoFromLocal();
-
     }
 
     /**

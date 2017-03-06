@@ -723,7 +723,7 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
                 setBtnEnable(false);
             } else if (mMediaItemList.size() == 2) {
                 if (mPosition == 0) {
-                    mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+                    mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
                     mPreVideoBtn.setEnabled(false);
                     mNextVideoBtn.setBackgroundResource(R.drawable.selector_next_video_btn);
                     mNextVideoBtn.setEnabled(true);
@@ -735,7 +735,7 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
                 }
             } else {
                 if (mPosition == 0) {
-                    mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+                    mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
                     mPreVideoBtn.setEnabled(false);
                 } else if (mPosition == mMediaItemList.size() - 1) {
                     mNextVideoBtn.setBackgroundResource(R.drawable.next_btn_gray);
@@ -759,7 +759,7 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
             mPreVideoBtn.setBackgroundResource(R.drawable.selector_pre_video_btn);
             mNextVideoBtn.setBackgroundResource(R.drawable.selector_next_video_btn);
         } else {
-            mPreVideoBtn.setBackgroundResource(R.drawable.pre_btn_gray);
+            mPreVideoBtn.setBackgroundResource(R.drawable.video_pre_btn_gray);
             mNextVideoBtn.setBackgroundResource(R.drawable.next_btn_gray);
         }
         mPreVideoBtn.setEnabled(isEnable);

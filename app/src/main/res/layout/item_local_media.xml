@@ -3,7 +3,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_100"
-    android:padding="@dimen/dp_3">
+    android:padding="@dimen/dp_6">
 
     <ImageView
         android:id="@+id/localMedia_iv_icon"
@@ -47,12 +47,12 @@
         android:textSize="@dimen/sp_16"
         tool:text="20MB" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/dp_8"
-        android:layout_marginRight="@dimen/dp_8"
-        android:background="@color/color_44000000" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp_1"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginLeft="@dimen/dp_8"-->
+        <!--android:layout_marginRight="@dimen/dp_8"-->
+        <!--android:background="@color/color_44000000" />-->
 
 </RelativeLayout>

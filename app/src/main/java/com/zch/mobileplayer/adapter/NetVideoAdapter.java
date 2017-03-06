@@ -7,11 +7,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zch.mobileplayer.R;
 import com.zch.mobileplayer.entity.MediaItem;
 import com.zch.mobileplayer.utils.ListUtils;
-
-import org.xutils.x;
 
 import java.util.ArrayList;
 
@@ -64,7 +64,12 @@ public class NetVideoAdapter extends BaseAdapter {
         if (null != mediaItem) {
             hoder.videoNameTv.setText(mediaItem.name);
             hoder.videoDescTv.setText(mediaItem.desc);
-            x.image().bind(hoder.videoIconIv, mediaItem.imageUrl);
+            //x.image().bind(hoder.videoIconIv, mediaItem.imageUrl);
+            Glide.with(mContext).load(mediaItem.imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.video_default)
+                    .error(R.drawable.video_default)
+                    .into(hoder.videoIconIv);
         }
 
         return convertView;
