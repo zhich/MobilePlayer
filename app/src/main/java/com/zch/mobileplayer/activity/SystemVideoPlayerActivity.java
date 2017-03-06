@@ -106,6 +106,7 @@ public class SystemVideoPlayerActivity extends BaseActivity {
     private int mPosition;//要播放的列表中的具体位置
     private boolean mIsNetUri;//是否网络Uri
     private int mPrePlayPosition;//上一次的播放进度
+    private int mCurPlayPosition;//当前的播放进度
     private GestureDetector mGestureDetector;//手势识别器
     private AudioManager mAudioManager;//声音管理器
     private int mCurrentVoice;//当前的音量
@@ -137,6 +138,20 @@ public class SystemVideoPlayerActivity extends BaseActivity {
 
         init();
         setListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        mVideoView.seekTo(mCurPlayPosition);
+//        setStartOrPause();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        setStartOrPause();
+//        mCurPlayPosition = mVideoView.getCurrentPosition();
     }
 
     @Override
