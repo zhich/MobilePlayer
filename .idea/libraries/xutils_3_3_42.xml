@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="xutils-3.3.42">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.xutils/xutils/3.3.42/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.xutils/xutils/3.3.42/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/5e42679f194d139bdfcc886dae35c00a6e367160/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/5e42679f194d139bdfcc886dae35c00a6e367160/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

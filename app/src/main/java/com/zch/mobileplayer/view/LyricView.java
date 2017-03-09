@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.zch.mobileplayer.entity.Lyric;
 import com.zch.mobileplayer.utils.DensityUtils;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * Created by zch on 2017/3/6.
  */
 
-public class LyricView extends TextView {
+public class LyricView extends android.support.v7.widget.AppCompatTextView {
 
     private ArrayList<Lyric> mLyricList;//歌词列表
     private Paint mPaint;
