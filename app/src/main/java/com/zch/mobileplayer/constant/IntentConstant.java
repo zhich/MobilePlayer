@@ -8,7 +8,7 @@ package com.zch.mobileplayer.constant;
 public class IntentConstant {
 
     public static final String POSITION = "position";
-
     public static final String VIDEO_LIST = "videolist";
+    public static final String IS_FROM_NOTIFICATION = "isFromNotification";
 
 }

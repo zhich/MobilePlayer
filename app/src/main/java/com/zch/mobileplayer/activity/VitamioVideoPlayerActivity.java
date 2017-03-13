@@ -565,7 +565,7 @@ public class VitamioVideoPlayerActivity extends BaseActivity {
     private void showErrorDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(mContext.getString(R.string.tip));
-        builder.setMessage(mContext.getString(R.string.sorry_cannot_play_the_video));
+        builder.setMessage(mContext.getString(R.string.tip_sorry_cannot_play_the_video));
         builder.setPositiveButton(mContext.getString(R.string.confirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

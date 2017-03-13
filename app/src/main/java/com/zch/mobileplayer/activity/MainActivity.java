@@ -48,6 +48,10 @@ public class MainActivity extends BaseActivity {
         mBottomTagRg.check(R.id.main_rb_localVideo);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    }
+
     class MyOnCheckChangeListener implements RadioGroup.OnCheckedChangeListener {
 
         @Override

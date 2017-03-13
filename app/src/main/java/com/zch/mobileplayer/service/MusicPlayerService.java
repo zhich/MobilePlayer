@@ -19,6 +19,7 @@ import android.support.annotation.RequiresApi;
 import com.zch.mobileplayer.IMusicPlayerService;
 import com.zch.mobileplayer.R;
 import com.zch.mobileplayer.activity.AudioPlayerActivity;
+import com.zch.mobileplayer.constant.IntentConstant;
 import com.zch.mobileplayer.entity.MediaItem;
 import com.zch.mobileplayer.utils.ListUtils;
 import com.zch.mobileplayer.utils.SPUtils;
@@ -35,6 +36,8 @@ import de.greenrobot.event.EventBus;
  */
 
 public class MusicPlayerService extends Service {
+
+    public static final String ACTION_OPENAUDIO = "com.zch.mobileplayer_OPENAUDIO";
 
     public static final int REPEAT_NORMAL = 1;//顺序播放
     public static final int REPEAT_SINGLE = 2;//单曲循环
@@ -234,6 +237,7 @@ public class MusicPlayerService extends Service {
                 }
             });
             mMediaPlayer.setDataSource(mCurMediaItem.data);
+            mMediaPlayer.prepareAsync();
             if (mPlaymode == REPEAT_SINGLE) {
                 mMediaPlayer.setLooping(true);//单曲循环播放-不会触发播放完成的回调
             } else {
@@ -255,7 +259,7 @@ public class MusicPlayerService extends Service {
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         //最主要
         Intent intent = new Intent(this, AudioPlayerActivity.class);
-        intent.putExtra("notification", true);//标识来自状态拦
+        intent.putExtra(IntentConstant.IS_FROM_NOTIFICATION, true);//标识来自状态拦
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.notification_music_playing)

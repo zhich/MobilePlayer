@@ -1,5 +1,6 @@
 package com.zch.mobileplayer.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,11 @@ public class PagerFragment extends Fragment {
 
     private BasePager mBasePager;
 
+    public PagerFragment() {
+
+    }
+
+    @SuppressLint("ValidFragment")
     public PagerFragment(BasePager basePager) {
         this.mBasePager = basePager;
     }

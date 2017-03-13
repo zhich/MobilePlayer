@@ -64,6 +64,13 @@ public class LyricView extends android.support.v7.widget.AppCompatTextView {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mWidth = w;
+        mHeight = h;
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (ListUtils.isEmpty(mLyricList)) {

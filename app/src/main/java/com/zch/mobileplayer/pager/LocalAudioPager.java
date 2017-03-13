@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.zch.mobileplayer.R;
 import com.zch.mobileplayer.activity.AudioPlayerActivity;
-import com.zch.mobileplayer.activity.SystemVideoPlayerActivity;
 import com.zch.mobileplayer.adapter.LocalMediaAdapter;
 import com.zch.mobileplayer.constant.IntentConstant;
 import com.zch.mobileplayer.entity.MediaItem;

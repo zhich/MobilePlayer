@@ -281,6 +281,12 @@
         <activity
             android:name=".activity.AudioPlayerActivity"
             android:launchMode="singleTask" />
+
+        <service android:name=".service.MusicPlayerService">
+            <intent-filter>
+                <action android:name="com.zch.mobileplayer_OPENAUDIO" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
