@@ -3,6 +3,7 @@ package com.zch.mobileplayer.pager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import com.zch.mobileplayer.common.Api;
 import com.zch.mobileplayer.constant.IntentConstant;
 import com.zch.mobileplayer.entity.MediaItem;
 import com.zch.mobileplayer.utils.ListUtils;
+import com.zch.mobileplayer.utils.SPUtils;
 import com.zch.mobileplayer.utils.http.xutils3.MyCallBack;
 import com.zch.mobileplayer.utils.http.xutils3.MyXUtils3;
 
@@ -78,9 +80,15 @@ public class NetVideoPager extends BasePager {
      * 从网络抓取数据
      */
     private void fetchVideoFromNet() {
+        String savaJson = (String) SPUtils.getParam(Api.NET_VIDEO_URL, "");
+        if (!TextUtils.isEmpty(savaJson)) {
+            dealWithVideoDatas(savaJson);
+            return;
+        }
         MyXUtils3.xRequest(MyXUtils3.GET, Api.NET_VIDEO_URL, null, new MyCallBack<String>() {
             @Override
             public void onSuccess(String result) {
+                SPUtils.setParam(Api.NET_VIDEO_URL, result);
                 dealWithVideoDatas(result);
             }
 

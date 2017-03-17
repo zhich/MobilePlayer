@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_full"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_context"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="这哪里是在斗牛，分明就是玩命嘛！"
+        android:textColor="@color/color_000000"
+        android:textSize="@dimen/sp_18" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_image_gif"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5">
+
+
+    </pl.droidsonroids.gif.GifImageView>
+
+
+</LinearLayout>
+
+
+

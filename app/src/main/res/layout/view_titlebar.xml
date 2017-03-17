@@ -8,15 +8,17 @@
 
 
     <ImageView
-        style="@style/layout_wrap"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
         android:layout_marginLeft="@dimen/dp_8"
-        android:src="@drawable/topbanner_logo" />
+        android:src="@mipmap/ic_launcher" />
 
 
     <TextView
         android:id="@+id/titilebar_tv_search"
         style="@style/layout_wrap"
         android:layout_marginLeft="@dimen/dp_8"
+        android:layout_marginRight="@dimen/dp_8"
         android:layout_weight="1"
         android:background="@drawable/selector_search_bg"
         android:clickable="true"
@@ -25,12 +27,4 @@
         android:text="@string/whole_network_search"
         android:textColor="@drawable/selector_search_textcolor"
         android:textSize="@dimen/sp_14" />
-
-    <ImageView
-        android:id="@+id/titilebar_iv_record"
-        style="@style/layout_wrap"
-        android:layout_marginLeft="@dimen/dp_5"
-        android:layout_marginRight="@dimen/dp_8"
-        android:src="@drawable/topbanner_record" />
-
 </com.zch.mobileplayer.view.TitleBar>
